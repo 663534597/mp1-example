@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  -  说明:
+ -->
+<config>
+	<!-- 调试 -->
+	<debug>false</debug>
+	<!-- 第三方编译器 -->
+	<process>process</process>
+	<!-- 引擎插件目录  -->
+	<plugins>plugins</plugins>
+	<!-- 服务模型目录  -->
+	<service>model/service</service>
+	<revision>
+		<check>false</check>
+		<build>20170501</build>
+		<project>20170501</project>
+	</revision>
+</config>

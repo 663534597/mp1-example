@@ -1,0 +1,396 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.justep.cloud</groupId>
+	<artifactId>gox5-bom</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+
+<properties>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+	<justep.directory>${JUSTEP_HOME}</justep.directory>
+
+	<model.directory>${justep.directory}/model</model.directory>
+	<model-service.dir>${model.directory}/service</model-service.dir>
+	<model-service.out.dir>${model-service.dir}/dist</model-service.out.dir>
+	<bundle-out.dir>${model-service.out.dir}/bundle</bundle-out.dir>
+	<bundle-src.dir>${model-service.dir}</bundle-src.dir>
+
+	<tools.directory>${justep.directory}/tools</tools.directory>
+	<tools-compile.dir>${tools.directory}/compile</tools-compile.dir>
+	<tools-swagger.dir>${tools.directory}/swagger</tools-swagger.dir>
+	<tools-tomcat.dir>${tools.directory}/tomcat</tools-tomcat.dir>
+	<tools-mysql.dir>${tools.directory}/mysql</tools-mysql.dir>
+	<tools-maven.dir>${tools.directory}/maven</tools-maven.dir>
+	<tools-node.dir>${tools.directory}/node</tools-node.dir>
+
+	<runtime.directory>${justep.directory}/runtime</runtime.directory>
+
+	<java.version>1.8</java.version>
+	<io-platform.version>Athens-SR4</io-platform.version>
+
+	<thrift.version>0.9.3</thrift.version>
+	<commons-configuration.version>1.10</commons-configuration.version>
+	<alibaba-fastjson.version>1.2.24</alibaba-fastjson.version>
+	<alibaba-druid.version>1.0.29</alibaba-druid.version>
+	<google-grpc.version>1.2.0</google-grpc.version>
+	<google-propobuf.version>3.2.0</google-propobuf.version>
+	<shiro.version>1.3.2</shiro.version>
+	<hazelcast.version>1.2</hazelcast.version>
+
+	<plugin-tomcat.version>2.2</plugin-tomcat.version>
+
+	<gox5-compile.version>1.4.0</gox5-compile.version>
+	<gox5-boot.version>1.0.0</gox5-boot.version>
+	<gox5-boot-core.version>1.2.1</gox5-boot-core.version>
+	<gox5-boot-jetty.version>1.1.0</gox5-boot-jetty.version>
+	<gox5-boot-middleware.version>1.1.0</gox5-boot-middleware.version>
+	<gox5-datasource.version>1.0.0</gox5-datasource.version>
+	<gox5-util.version>1.0.0</gox5-util.version>
+	<gox5-meta.version>1.0.1</gox5-meta.version>
+	<gox5-model-java.version>1.2.0</gox5-model-java.version>
+	<gox5-model-common.version>1.3.4</gox5-model-common.version>
+	<ant.version>1.10.1</ant.version>
+</properties>
+
+<dependencyManagement>
+	<dependencies>
+<dependency>
+<groupId>io.spring.platform</groupId>
+<artifactId>platform-bom</artifactId>
+<version>${io-platform.version}</version>
+<type>pom</type>
+<scope>import</scope>
+</dependency>
+<dependency>
+<groupId>org.apache.ant</groupId>
+<artifactId>ant</artifactId>
+<version>${ant.version}</version>
+</dependency>
+<!-- COMMONS -->
+<dependency>
+<groupId>commons-configuration</groupId>
+<artifactId>commons-configuration</artifactId>
+<version>${commons-configuration.version}</version>
+</dependency>
+<dependency>
+<groupId>org.apache.thrift</groupId>
+<artifactId>libthrift</artifactId>
+<version>${thrift.version}</version>
+</dependency>
+
+<!-- IO.GRPC -->
+<dependency>
+<groupId>io.grpc</groupId>
+<artifactId>grpc-core</artifactId>
+<version>${google-grpc.version}</version>
+</dependency>
+<dependency>
+<groupId>io.grpc</groupId>
+<artifactId>grpc-stub</artifactId>
+<version>${google-grpc.version}</version>
+</dependency>
+<dependency>
+<groupId>io.grpc</groupId>
+<artifactId>grpc-services</artifactId>
+<version>${google-grpc.version}</version>
+</dependency>
+<dependency>
+<groupId>io.grpc</groupId>
+<artifactId>grpc-grpclb</artifactId>
+<version>${google-grpc.version}</version>
+</dependency>
+<dependency>
+<groupId>io.grpc</groupId>
+<artifactId>grpc-okhttp</artifactId>
+<version>${google-grpc.version}</version>
+</dependency>
+<dependency>
+<groupId>io.grpc</groupId>
+<artifactId>grpc-context</artifactId>
+<version>${google-grpc.version}</version>
+</dependency>
+<dependency>
+<groupId>io.grpc</groupId>
+<artifactId>grpc-auth</artifactId>
+<version>${google-grpc.version}</version>
+</dependency>
+<dependency>
+<groupId>io.grpc</groupId>
+<artifactId>grpc-protobuf</artifactId>
+<version>${google-grpc.version}</version>
+</dependency>
+<dependency>
+<groupId>io.grpc</groupId>
+<artifactId>grpc-netty</artifactId>
+<version>${google-grpc.version}</version>
+</dependency>
+<dependency>
+<groupId>io.grpc</groupId>
+<artifactId>protoc-gen-grpc-java</artifactId>
+<version>${google-grpc.version}</version>
+</dependency>
+<dependency>
+<groupId>io.grpc</groupId>
+<artifactId>grpc-testing</artifactId>
+<version>${google-grpc.version}</version>
+</dependency>
+
+<!-- IO.PROTOBUF -->
+<dependency>
+<groupId>com.google.protobuf</groupId>
+<artifactId>protobuf-java</artifactId>
+<version>${google-propobuf.version}</version>
+</dependency>
+
+<!-- ALIBABA -->
+<dependency>
+<groupId>com.alibaba</groupId>
+<artifactId>fastjson</artifactId>
+<version>${alibaba-fastjson.version}</version>
+</dependency>
+<dependency>
+<groupId>com.alibaba</groupId>
+<artifactId>druid</artifactId>
+<version>${alibaba-druid.version}</version>
+</dependency>
+
+<!-- SHIRO -->
+<dependency>
+<groupId>org.apache.shiro</groupId>
+<artifactId>shiro-core</artifactId>
+<version>${shiro.version}</version>
+</dependency>
+<dependency>
+<groupId>org.apache.shiro</groupId>
+<artifactId>shiro-web</artifactId>
+<version>${shiro.version}</version>
+</dependency>
+<dependency>
+<groupId>org.apache.shiro</groupId>
+<artifactId>shiro-spring</artifactId>
+<version>${shiro.version}</version>
+</dependency>
+<dependency>
+<groupId>org.apache.shiro</groupId>
+<artifactId>shiro-aspectj</artifactId>
+<version>${shiro.version}</version>
+</dependency>
+<dependency>
+<groupId>org.apache.shiro</groupId>
+<artifactId>shiro-support</artifactId>
+<version>${shiro.version}</version>
+</dependency>
+<dependency>
+<groupId>org.apache.shiro</groupId>
+<artifactId>shiro-hazelcast</artifactId>
+<version>${shiro.version}</version>
+</dependency>
+
+<!-- HAZELCAST -->
+<dependency>
+<groupId>com.hazelcast</groupId>
+<artifactId>hazelcast-hibernate5</artifactId>
+<version>${hazelcast.version}</version>
+</dependency>
+
+<dependency>
+<groupId>stax</groupId>
+<artifactId>stax-api</artifactId>
+<version>1.0.1</version>
+</dependency>
+<dependency>
+<groupId>stax</groupId>
+<artifactId>stax</artifactId>
+<version>1.2.0</version>
+</dependency>
+
+<!-- GoX5 Platform -->
+<dependency>
+	<groupId>com.justep.cloud</groupId>
+	<artifactId>gox5-compile</artifactId>
+	<version>${gox5-compile.version}</version>
+</dependency>
+<dependency>
+	<groupId>com.justep.cloud</groupId>
+	<artifactId>gox5-model-common</artifactId>
+	<version>${gox5-model-common.version}</version>
+</dependency>
+<dependency>
+	<groupId>com.justep.cloud</groupId>
+	<artifactId>gox5-boot-core</artifactId>
+	<version>${gox5-boot-core.version}</version>
+</dependency>
+<dependency>
+	<groupId>com.justep.cloud</groupId>
+	<artifactId>gox5-boot-jetty</artifactId>
+	<version>${gox5-boot-jetty.version}</version>
+</dependency>
+<dependency>
+	<groupId>com.justep.cloud</groupId>
+			<artifactId>gox5-boot-middleware</artifactId>
+			<version>${gox5-boot-middleware.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.justep.cloud</groupId>
+			<artifactId>gox5-datasource</artifactId>
+			<version>${gox5-datasource.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.justep.cloud</groupId>
+			<artifactId>gox5-util</artifactId>
+			<version>${gox5-util.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.justep.cloud</groupId>
+			<artifactId>gox5-meta</artifactId>
+			<version>${gox5-meta.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.justep.cloud</groupId>
+			<artifactId>gox5-model-java</artifactId>
+			<version>${gox5-model-java.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.justep</groupId>
+			<artifactId>classloader</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.justep</groupId>
+			<artifactId>common</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.justep</groupId>
+			<artifactId>ext-space</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.justep</groupId>
+			<artifactId>message</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun</groupId>
+			<artifactId>tools</artifactId>
+			<version>1.7.0_07</version>
+			<scope>system</scope>
+			<systemPath>${java.home}/lib/tools.jar</systemPath>
+		</dependency>
+	</dependencies>
+</dependencyManagement>
+
+<dependencies>
+	<!-- Log libs -->
+<dependency>
+	<groupId>org.slf4j</groupId>
+	<artifactId>slf4j-log4j12</artifactId>
+</dependency>
+
+<!-- Test libs -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</testResource>
+		</testResources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<showDeprecation>false</showDeprecation>
+					<showWarnings>false</showWarnings>
+					<useIncrementalCompilation>true</useIncrementalCompilation>
+					<debug>false</debug>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<parallel>classesAndMethods</parallel>
+					<useUnlimitedThreads>true</useUnlimitedThreads>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>${plugin-tomcat.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>3.0.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>appassembler-maven-plugin</artifactId>
+					<version>2.0.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>3.0.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.0.2</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>3.1.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.6.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.20</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.8</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>3.0.0</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>
